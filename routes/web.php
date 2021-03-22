@@ -16,5 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[Controller::class,'vie']);
 Route::get('base',[AyoubController::class,'tablebase']);
 
+Route::group(['prefix'=>'donne'],function(){
+    //Route::get('stor',[AyoubController::class,'stor']);
+    Route::get('creat',[AyoubController::class,'creat']);
+   // Route::get('return',[AyoubController::class,'stor']);
+    Route::post('stor',[AyoubController::class,'stor'])->name('donne.stor');
+});
+
 
 
