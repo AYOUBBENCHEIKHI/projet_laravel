@@ -7,6 +7,7 @@ use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
+
 class AyoubController extends Controller
 {
     public function tablebase(){
@@ -42,10 +43,10 @@ class AyoubController extends Controller
         return redirect()->back()->with(['secestion'=>'Envoyez secsuflly']);
     }
     protected function getMessages(){
-        return  $messages = ['nome.required'=>'Obligatoire d\'entrez le nome de offer !',
-                             'nome.unique'=>'Cett nome est deja existe',
-                             'piece.required'=>'Obligatoire d\'entrez le nomber des offers !',
-                             'photo.required'=>'Obligatoire d\'entrez la photo de offer '];
+        return  $messages = ['nome.required'=>__('message.nome.required'),
+                             'nome.unique'=>__('message.nome.unique'),
+                             'piece.required'=>__('message.piece.required'),
+                             'photo.required'=>__('message.photo.required')];
     }
     protected function getRules(){
       return  $rules = ['nome'=>'required|max:100|unique:offers,nome',

@@ -1,7 +1,8 @@
 <?php
 namespace App\Http\Controllers;
+use \Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Routing\Router;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,11 +17,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[Controller::class,'vie']);
 Route::get('base',[AyoubController::class,'tablebase']);
 
-Route::group(['prefix'=>'donne'],function(){
-    //Route::get('stor',[AyoubController::class,'stor']);
-    Route::get('creat',[AyoubController::class,'creat']);
-   // Route::get('return',[AyoubController::class,'stor']);
-    Route::post('stor',[AyoubController::class,'stor'])->name('donne.stor');
+
+    Route::group([
+        'prefix'=>LaravelLocalization::setLocale(),
+        /*'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]*/
+    ],function() {
+        Route::group(['prefix'=>'donne'],function(){
+                Route::get('creat',[AyoubController::class, 'creat']);
+                Route::post('stor',[AyoubController::class,'stor']);
+
+        });
 });
 
 
